@@ -3,7 +3,7 @@
  * - inserir uma nova pessoa // feito, insere_pessoa_lista();
  * - alterar uma pessoa existente //
  * - excluir uma pessoa // feito, exclui_pessoa_lista();
- * - mostrar/imprimir dados de uma pessoa com base no código //
+ * - mostrar/imprimir dados de uma pessoa com base no_pessoa código //
  * - mostrar/imprimir dados de pessoas que tenham um tipo de pet (cão, por exemplo)
  * - mostrar/imprimir todas as pessoas
  * - mostrar/imprimir todas as pessoas om ordem alfabética pelo nome
@@ -15,6 +15,8 @@
 
 #ifndef PETSHOP_PESSOA_H
 #define PETSHOP_PESSOA_H
+
+#include "pet.h"
 
 static int total_pessoas;
 
@@ -51,9 +53,11 @@ int exclui_pessoa_lista(lista_pessoas*, int);
 
 pessoa* busca_pessoa(lista_pessoas*, int);
 
-void mostra_pessoa(lista_pessoas*, int);
+void mostra_pessoa_lista(lista_pessoas*, int);
 
-void mostra_pessoa_tipo
+void mostra_lista_pessoas(lista_pessoas*);
+
+//void mostra_pessoa_tipo(lista_pessoas*, pet);
 
 pessoa cria_pessoa(char*, char*, long int, char*, int, int, int, int);
 

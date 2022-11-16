@@ -20,7 +20,7 @@ Faça um programa em linguagem C para cadastrar pessoas e seus pets.
 * nome (do pet)*
 * data nascimento*
   
-O asterisco "*" acima indica que o campo é obrigatório, ou seja, deve ser informado no cadastro.
+O asterisco "*" acima indica que o campo é obrigatório, ou seja, deve ser informado no_pessoa cadastro.
 
 ## Funcionalidades
 
@@ -28,7 +28,7 @@ O asterisco "*" acima indica que o campo é obrigatório, ou seja, deve ser info
 * inserir uma nova pessoa
 * alterar uma pessoa existente
 * excluir uma pessoa
-* mostrar/imprimir dados de uma pessoa com base no código
+* mostrar/imprimir dados de uma pessoa com base no_pessoa código
 * mostrar/imprimir dados de pessoas que tenham um tipo de pet (cão, por exemplo)
 * mostrar/imprimir todas as pessoas
 * mostrar/imprimir todas as pessoas om ordem alfabética pelo nome
@@ -37,8 +37,8 @@ O asterisco "*" acima indica que o campo é obrigatório, ou seja, deve ser info
 * inserir um novo pet
 * alterar um pet existente
 * excluir um pet
-* mostrar/imprimir dados de um pet com base no código do pet
-* mostrar/imprimir todos os pets de uma pessoa com base no código da pessoa
+* mostrar/imprimir dados de um pet com base no_pessoa código do pet
+* mostrar/imprimir todos os pets de uma pessoa com base no_pessoa código da pessoa
 * mostrar/imprimir todos os pets em ordem alfabética pelo nome
 
 ## Outros requisitos
@@ -56,8 +56,8 @@ O asterisco "*" acima indica que o campo é obrigatório, ou seja, deve ser info
 * use um par de arquivos `pet.h` e `pet.c`.
 
 ### para o programa:
-* crie um menu no programa para usar as funcionalidades acima
+* crie um menu no_pessoa programa para usar as funcionalidades acima
 * use as funções implementadas nos arquivos um arquivo principal (`main.c`)
 
 ### Opcionais (não é obrigatório):
-* implementar uma maneira de definição automática dos valores de código para uma pessoa no momento da inserção. O mesmo pode ser feito para código do pet.
+* implementar uma maneira de definição automática dos valores de código para uma pessoa no_pessoa momento da inserção. O mesmo pode ser feito para código do pet.

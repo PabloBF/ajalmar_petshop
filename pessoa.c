@@ -1,6 +1,7 @@
 #include "pessoa.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 pessoa cria_pessoa(char* nome, char* rg, long int cpf, char* endereco, int nascimento_dia, int nascimento_mes, int nascimento_ano, int rendimento)
 {
@@ -67,11 +68,36 @@ pessoa* busca_pessoa(lista_pessoas* l, int codigo)
     return &p->pessoa;
 }
 
-void mostra_pessoa(lista_pessoas* l, int codigo)
+void mostra_pessoa(pessoa p)
+{
+    wprintf(L"Código: %d", p.codigo);
+    wprintf(L" | ");
+    wprintf(L"Nome: %s", p.nome);
+    wprintf(L" | ");
+    wprintf(L"RG: %s", p.rg);
+    wprintf(L" | ");
+    wprintf(L"CPF: %ld", p.cpf);
+    wprintf(L" | ");
+    wprintf(L"Endereço: %s", p.endereco);
+    wprintf(L" | ");
+    wprintf(L"Nasc. %02d/%02d/%d", p.nascimento_dia, p.nascimento_mes, p.nascimento_ano);
+    wprintf(L" | ");
+    wprintf(L"Rendimento: R$ %.2lf", (double) p.rendimento/100);
+    wprintf(L"\n");
+}
+
+void mostra_pessoa_lista(lista_pessoas* l, int codigo)
 {
     pessoa* p = busca_pessoa(l, codigo);
     if(p != NULL)
-        wprintf(L"Nome: %s (nasc. %02d/%02d/%d).\n", p->nome, p->nascimento_dia, p->nascimento_mes, p->nascimento_ano);
+        mostra_pessoa(*p);
     else
         wprintf(L"Código inválido.\n");
+}
+
+void mostra_lista_pessoas(lista_pessoas* l)
+{
+    no_pessoa* p;
+    for(p = l->primeiro_no; p != NULL; p = p->proximo)
+        mostra_pessoa(p->pessoa);
 }

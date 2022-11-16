@@ -3,8 +3,8 @@
  * - inserir um novo pet
  * - alterar um pet existente
  * - excluir um pet
- * - mostrar/imprimir dados de um pet com base no código do pet
- * - mostrar/imprimir todos os pets de uma pessoa com base no código da pessoa
+ * - mostrar/imprimir dados de um pet com base no_pessoa código do pet
+ * - mostrar/imprimir todos os pets de uma pessoa com base no_pessoa código da pessoa
  * - mostrar/imprimir todos os pets em ordem alfabética pelo nome
  *
  * Outros requisitos para pet:
@@ -20,7 +20,7 @@
 typedef struct pet
 {
     int codigo;
-    pessoa dono;
+    int dono;
     enum tipos {outro, cao, gato, passaro, cobra} tipo;
     char *nome;
     int nascimento_dia;
