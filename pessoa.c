@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 
+
+
 pessoa cria_pessoa(char nome[NOME_MAX], char rg[RG_MAX], char cpf[CPF_MAX], char endereco[ENDERECO_MAX], int nascimento_dia, int nascimento_mes, int nascimento_ano, int rendimento)
 {
     pessoa nova_pessoa;
@@ -16,6 +18,21 @@ pessoa cria_pessoa(char nome[NOME_MAX], char rg[RG_MAX], char cpf[CPF_MAX], char
     nova_pessoa.nascimento_ano = nascimento_ano;
     nova_pessoa.rendimento = rendimento;
     return nova_pessoa;
+}
+
+pessoa cria_pessoa_void()
+{
+    return cria_pessoa("", "", "", "", 1, 1, 1, 0);
+}
+
+void cadastra_pessoa(lista_pessoas* l, pessoa* p)
+{
+    set_rendimento_looping(p);
+    set_nome_looping(p);
+    set_rg_looping(p);
+    set_cpf_looping(p);
+    set_endereco_looping(p);
+    set_nascimento_looping(p);
 }
 
 void inicializa_lista_pessoas(lista_pessoas* l)
@@ -162,8 +179,73 @@ int set_nascimento(pessoa* p)
 int set_rendimento(pessoa* p)
 {
     float rendimento = 0;
-    wprintf(L"Rendimento (R$):\n");
+    int centavos;
+    wprintf(L"Rendimento (R$, e.g. 0,00):\n");
+    wscanf(L"%f", &rendimento);
     fflush(stdin);
-    wscanf(L"%f", rendimento);
-    p->rendimento = (int) (rendimento*100);
+    rendimento = rendimento * 100;
+    centavos = (int) rendimento;
+    p->rendimento = centavos;
+    return (p->rendimento >= 0);
+}
+
+void set_nome_looping(pessoa* p)
+{
+    int flag;
+    do
+    {
+        flag = set_nome(p);
+        if(flag) wprintf(L"Nome cadastrado com sucesso.\n");
+        else wprintf(L"Entrada inválida, tente novamente.\n");
+    } while(!flag);
+}
+
+void set_rg_looping(pessoa* p)
+{
+    int flag;
+    do
+    {
+        flag = set_rg(p);
+        if(flag) wprintf(L"RG cadastrado com sucesso.\n");
+        else wprintf(L"Entrada inválida, tente novamente.\n");
+    } while(!flag);
+}
+
+void set_cpf_looping(pessoa* p)
+{
+    int flag;
+    do
+    {
+        flag = set_cpf(p);
+        if(flag) wprintf(L"CPF cadastrado com sucesso.\n");
+        else wprintf(L"Entrada inválida, tente novamente.\n");
+    } while(!flag);
+}
+
+void set_endereco_looping(pessoa* p)
+{
+        set_endereco(p);
+        wprintf(L"Endereço cadastrado com sucesso.\n");
+}
+
+void set_nascimento_looping(pessoa* p)
+{
+    int flag;
+    do
+    {
+        flag = set_nascimento(p);
+        if(flag) wprintf(L"Data de nascimento cadastrada com sucesso.\n");
+        else wprintf(L"Entrada inválida, tente novamente.\n");
+    } while(!flag);
+}
+
+void set_rendimento_looping(pessoa* p)
+{
+    int flag;
+    do
+    {
+        flag = set_rendimento(p);
+        if(flag) wprintf(L"Rendimento cadastrado com sucesso.\n");
+        else wprintf(L"Entrada inválida, tente novamente.\n");
+    } while(!flag);
 }

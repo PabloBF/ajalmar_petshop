@@ -9,6 +9,7 @@ int main() {
     char nome[NOME_MAX], rg[RG_MAX], cpf[CPF_MAX], endereco[ENDERECO_MAX];
     int dia, mes, ano;
     float rendimento;
+    pessoa p;
 
     lista_pessoas minha_lista_pessoas;
 
@@ -44,35 +45,9 @@ int main() {
                 wprintf(L"FIM\n");
                 break;
             case 1:
-                wprintf(L"Nome:\n");
-                fflush(stdin);
-                fgets(nome, NOME_MAX, stdin);
-                nome[strcspn(nome, "\n")] = 0;
-
-                wprintf(L"RG:\n");
-                fflush(stdin);
-                fgets(rg, RG_MAX, stdin);
-                rg[strcspn(rg, "\n")] = 0;
-
-                wprintf(L"CPF:\n");
-                fflush(stdin);
-                fgets(cpf, CPF_MAX, stdin);
-                cpf[strcspn(cpf, "\n")] = 0;
-
-                wprintf(L"Endereço:\n");
-                fflush(stdin);
-                fgets(endereco, ENDERECO_MAX, stdin);
-                endereco[strcspn(endereco, "\n")] = 0;
-
-                wprintf(L"Dia, mes e ano de nascimento (dd mm aaaa):\n");
-                fflush(stdin);
-                wscanf(L"%d %d %d", &dia, &mes, &ano);
-
-                wprintf(L"Rendimento (R$):\n");
-                fflush(stdin);
-                wscanf(L"%f", &rendimento);
-
-                insere_pessoa_lista(&minha_lista_pessoas, cria_pessoa(nome, rg, cpf, endereco, dia, mes, ano, (int) (100 * rendimento)));
+                p = cria_pessoa_void();
+                cadastra_pessoa(&minha_lista_pessoas, &p);
+                insere_pessoa_lista(&minha_lista_pessoas, p);
                 fflush(stdin);
                 break;
             case 4:

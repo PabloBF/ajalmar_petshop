@@ -77,6 +77,22 @@ int set_nascimento(pessoa*);
 
 int set_rendimento(pessoa*);
 
+void set_nome_looping(pessoa*);
+
+void set_rg_looping(pessoa*);
+
+void set_cpf_looping(pessoa*);
+
+void set_endereco_looping(pessoa*);
+
+void set_nascimento_looping(pessoa*);
+
+void set_rendimento_looping(pessoa*);
+
+void cadastra_pessoa(lista_pessoas*, pessoa*);
+
+pessoa cria_pessoa_void();
+
 pessoa cria_pessoa(char*, char*, char*, char*, int, int, int, int);
 
 #endif //PETSHOP_PESSOA_H
