@@ -148,12 +148,12 @@ int set_nascimento(pessoa* p)
         switch (p->nascimento_mes)
         {
             case 2:
-                if(p->nascimento_dia >= 29) return 0;
+                if(p->nascimento_dia > 29) return 0;
             case 4:
             case 6:
             case 9:
             case 11:
-                if(p->nascimento_dia >= 30) return 0;
+                if(p->nascimento_dia > 30) return 0;
         }
         return 1;
     } else return 0;
