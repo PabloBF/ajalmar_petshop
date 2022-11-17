@@ -17,16 +17,20 @@
 #define PETSHOP_PESSOA_H
 
 #include "pet.h"
+#define NOME_MAX 51
+#define RG_MAX 21
+#define CPF_MAX 15
+#define ENDERECO_MAX 76
 
 static int total_pessoas;
 
 typedef struct pessoa
 {
     int codigo;
-    char *nome;
-    char *rg;
-    long int cpf;
-    char *endereco;
+    char nome[NOME_MAX];
+    char rg[RG_MAX];
+    char cpf[CPF_MAX];
+    char endereco[ENDERECO_MAX];
     int nascimento_dia;
     int nascimento_mes;
     int nascimento_ano;
@@ -55,10 +59,12 @@ pessoa* busca_pessoa(lista_pessoas*, int);
 
 void mostra_pessoa_lista(lista_pessoas*, int);
 
+void altera_pessoa_lista(lista_pessoas*, int);
+
 void mostra_lista_pessoas(lista_pessoas*);
 
 //void mostra_pessoa_tipo(lista_pessoas*, pet);
 
-pessoa cria_pessoa(char*, char*, long int, char*, int, int, int, int);
+pessoa cria_pessoa(char*, char*, char*, char*, int, int, int, int);
 
 #endif //PETSHOP_PESSOA_H

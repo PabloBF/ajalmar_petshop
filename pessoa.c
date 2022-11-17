@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include <string.h>
 
-pessoa cria_pessoa(char* nome, char* rg, long int cpf, char* endereco, int nascimento_dia, int nascimento_mes, int nascimento_ano, int rendimento)
+pessoa cria_pessoa(char nome[NOME_MAX], char rg[RG_MAX], char cpf[CPF_MAX], char endereco[ENDERECO_MAX], int nascimento_dia, int nascimento_mes, int nascimento_ano, int rendimento)
 {
     pessoa nova_pessoa;
     nova_pessoa.codigo = total_pessoas++;
-    nova_pessoa.nome = nome;
-    nova_pessoa.rg = rg;
-    nova_pessoa.cpf = cpf;
-    nova_pessoa.endereco = endereco;
+    strcpy(nova_pessoa.nome, nome);
+    strcpy(nova_pessoa.rg, rg);
+    strcpy(nova_pessoa.cpf, cpf);
+    strcpy(nova_pessoa.endereco, endereco);
     nova_pessoa.nascimento_dia = nascimento_dia;
     nova_pessoa.nascimento_mes = nascimento_mes;
     nova_pessoa.nascimento_ano = nascimento_ano;
@@ -70,19 +70,19 @@ pessoa* busca_pessoa(lista_pessoas* l, int codigo)
 
 void mostra_pessoa(pessoa p)
 {
-    wprintf(L"Código: %d", p.codigo);
+    wprintf(L"Código: %-3d", p.codigo);
     wprintf(L" | ");
-    wprintf(L"Nome: %s", p.nome);
+    wprintf(L"Nome: %-*s", NOME_MAX - 1, p.nome);
     wprintf(L" | ");
-    wprintf(L"RG: %s", p.rg);
+    wprintf(L"RG: %-*s", RG_MAX - 1, p.rg);
     wprintf(L" | ");
-    wprintf(L"CPF: %ld", p.cpf);
+    wprintf(L"CPF: %-*s", CPF_MAX - 1, p.cpf);
     wprintf(L" | ");
-    wprintf(L"Endereço: %s", p.endereco);
+    wprintf(L"Endereço: %-*s", ENDERECO_MAX - 1, p.endereco);
     wprintf(L" | ");
     wprintf(L"Nasc. %02d/%02d/%d", p.nascimento_dia, p.nascimento_mes, p.nascimento_ano);
     wprintf(L" | ");
-    wprintf(L"Rendimento: R$ %.2lf", (double) p.rendimento/100);
+    wprintf(L"Rendimento: R$ %10.2lf", (double) (p.rendimento/100.0));
     wprintf(L"\n");
 }
 

@@ -1,18 +1,23 @@
 #include <locale.h>
 #include <stdio.h>
 #include <conio.h>
+#include <string.h>
 #include "pessoa.h"
 
 int main() {
-    int opcao, codigo_pessoa;
+    int opcao, opcao_2, codigo_pessoa;
+    char nome[NOME_MAX], rg[RG_MAX], cpf[CPF_MAX], endereco[ENDERECO_MAX];
+    int dia, mes, ano;
+    float rendimento;
+
     lista_pessoas minha_lista_pessoas;
 
     setlocale(LC_ALL, "Portuguese_Brazil");
     inicializa_lista_pessoas(&minha_lista_pessoas);
 
     //pessoas de exemplo
-    pessoa p0 = cria_pessoa("Pablo", "980020", 03327400000L, "Rua Senador Pompeu, 2610", 25, 5, 1989, 1000000);
-    pessoa p1 = cria_pessoa("Margarete", "980020", 03327400000L, "Rua Senador Pompeu, 2610", 22, 12, 1957, 5300012);
+    pessoa p0 = cria_pessoa("Pablo", "980020", "033.274.000-00", "Rua Senador Pompeu, 2610", 25, 5, 1989, 1000000);
+    pessoa p1 = cria_pessoa("Margarete", "980020", "033.274.000-01", "Rua Senador Pompeu, 2610", 22, 12, 1957, 200000051);
     insere_pessoa_lista(&minha_lista_pessoas, p0);
     insere_pessoa_lista(&minha_lista_pessoas, p1);
 
@@ -38,21 +43,60 @@ int main() {
             case 0:
                 wprintf(L"FIM\n");
                 break;
-            case 4:
-                wprintf(L"Insira o código da pessoa que deseja exibir:\n");
-                scanf("%i", &codigo_pessoa);
+            case 1:
+                wprintf(L"Nome:\n");
                 fflush(stdin);
-                mostra_pessoa_lista(&minha_lista_pessoas, codigo_pessoa);
-                wprintf(L"Aperte qualquer tecla para continuar.\n");
-                scanf("%x", &opcao);
+                fgets(nome, NOME_MAX, stdin);
+                nome[strcspn(nome, "\n")] = 0;
+
+                wprintf(L"RG:\n");
+                fflush(stdin);
+                fgets(rg, RG_MAX, stdin);
+                rg[strcspn(rg, "\n")] = 0;
+
+                wprintf(L"CPF:\n");
+                fflush(stdin);
+                fgets(cpf, CPF_MAX, stdin);
+                cpf[strcspn(cpf, "\n")] = 0;
+
+                wprintf(L"Endereço:\n");
+                fflush(stdin);
+                fgets(endereco, ENDERECO_MAX, stdin);
+                endereco[strcspn(endereco, "\n")] = 0;
+
+                wprintf(L"Dia, mes e ano de nascimento (dd mm aaaa):\n");
+                fflush(stdin);
+                wscanf(L"%d %d %d", &dia, &mes, &ano);
+
+                wprintf(L"Rendimento (R$):\n");
+                fflush(stdin);
+                wscanf(L"%f", &rendimento);
+
+                insere_pessoa_lista(&minha_lista_pessoas, cria_pessoa(nome, rg, cpf, endereco, dia, mes, ano, (int) (100 * rendimento)));
+                fflush(stdin);
+                break;
+            case 4:
+                do
+                {
+                    opcao_2 = -1;
+                    wprintf(L"Insira o código da pessoa que deseja exibir:\n");
+                    scanf("%i", &codigo_pessoa);
+                    fflush(stdin);
+                    mostra_pessoa_lista(&minha_lista_pessoas, codigo_pessoa);
+                    wprintf(L"Aperte 0 para sair ou outra tecla para continuar.\n");
+                    scanf("%x", &opcao_2);
+                    fflush(stdin);
+                } while(opcao_2 != 0);
                 break;
             case 6:
+                opcao_2 = -1;
                 mostra_lista_pessoas(&minha_lista_pessoas);
                 wprintf(L"Aperte qualquer tecla para continuar.\n");
-                scanf("%x", &opcao);
+                scanf("%x", &opcao_2);
+                fflush(stdin);
                 break;
             default:
-                wprintf(L"Você informou o caractere\'%c\'. Opção inválida.\n", opcao);
+                wprintf(L"Opção inválida.\n", opcao);
         }
     } while(opcao != 0);
 
