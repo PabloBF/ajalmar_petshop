@@ -65,6 +65,18 @@ void mostra_lista_pessoas(lista_pessoas*);
 
 //void mostra_pessoa_tipo(lista_pessoas*, pet);
 
+int set_nome(pessoa*);
+
+int set_rg(pessoa*);
+
+int set_cpf(pessoa*);
+
+int set_endereco(pessoa*);
+
+int set_nascimento(pessoa*);
+
+int set_rendimento(pessoa*);
+
 pessoa cria_pessoa(char*, char*, char*, char*, int, int, int, int);
 
 #endif //PETSHOP_PESSOA_H

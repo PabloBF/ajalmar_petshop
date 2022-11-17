@@ -101,3 +101,69 @@ void mostra_lista_pessoas(lista_pessoas* l)
     for(p = l->primeiro_no; p != NULL; p = p->proximo)
         mostra_pessoa(p->pessoa);
 }
+
+int set_nome(pessoa* p)
+{
+    wprintf(L"Nome:\n");
+    fflush(stdin);
+    fgets(p->nome, NOME_MAX, stdin);
+    p->nome[strcspn(p->nome, "\n")] = 0;
+    return strcmp(p->nome, "");
+}
+
+int set_rg(pessoa* p)
+{
+    wprintf(L"RG:\n");
+    fflush(stdin);
+    fgets(p->rg, RG_MAX, stdin);
+    p->rg[strcspn(p->rg, "\n")] = 0;
+    return strcmp(p->rg, "");
+}
+
+int set_cpf(pessoa* p)
+{
+    wprintf(L"CPF:\n");
+    fflush(stdin);
+    fgets(p->cpf, CPF_MAX, stdin);
+    p->cpf[strcspn(p->cpf, "\n")] = 0;
+    return strcmp(p->cpf, "");
+}
+
+int set_endereco(pessoa* p)
+{
+    wprintf(L"Endereço:\n");
+    fflush(stdin);
+    fgets(p->endereco, NOME_MAX, stdin);
+    p->endereco[strcspn(p->endereco, "\n")] = 0;
+    return 1;
+}
+
+int set_nascimento(pessoa* p)
+{
+    wprintf(L"Dia, mes e ano de nascimento (dd mm aaaa):\n");
+    fflush(stdin);
+    wscanf(L"%d %d %d", &p->nascimento_dia, &p->nascimento_mes, &p->nascimento_ano);
+    if(p->nascimento_dia > 0 && p->nascimento_mes > 0 && p->nascimento_dia <= 31 && p->nascimento_mes <= 12)
+    {
+        switch (p->nascimento_mes)
+        {
+            case 2:
+                if(p->nascimento_dia >= 29) return 0;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                if(p->nascimento_dia >= 30) return 0;
+        }
+        return 1;
+    } else return 0;
+}
+
+int set_rendimento(pessoa* p)
+{
+    float rendimento = 0;
+    wprintf(L"Rendimento (R$):\n");
+    fflush(stdin);
+    wscanf(L"%f", rendimento);
+    p->rendimento = (int) (rendimento*100);
+}
